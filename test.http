@@ -1,0 +1,76 @@
+### 1. Obtener todas las fotos iniciales (200 OK)
+GET http://localhost:3000/api/fotos
+
+###
+
+### 2. Obtener una foto existente por ID (200 OK)
+GET http://localhost:3000/api/fotos/1
+
+###
+
+### 3. Intentar obtener una foto que no existe (404 Not Found)
+GET http://localhost:3000/api/fotos/9
+
+###
+
+### 4. Crear una nueva foto (201 Created)
+POST http://localhost:3000/api/fotos
+Content-Type: application/json
+
+{
+  "titulo": "Cerro Santa Ana",
+  "calificacion": 5.0,
+  "descripcion": "Mirador de Guayaquil"
+}
+
+###
+
+### 5. Intentar crear una foto sin título (400 Bad Request)
+POST http://localhost:3000/api/fotos
+Content-Type: application/json
+
+{
+  "calificacion": 3.5
+}
+
+###
+
+### 6. Actualizar parcialmente una foto con PATCH (200 OK)
+# Actualiza solo el título y la calificación de la foto 1
+PATCH http://localhost:3000/api/fotos/1
+Content-Type: application/json
+
+{
+  "titulo": "Playa de Montañita - Atardecer",
+  "calificacion": 4.8
+}
+
+###
+
+### 7. Intentar actualizar una foto que no existe (404 Not Found)
+PATCH http://localhost:3000/api/fotos/99
+Content-Type: application/json
+
+{
+  "titulo": "No existe"
+}
+
+###
+
+### 8. Eliminar una foto existente (204 No Content)
+DELETE http://localhost:3000/api/fotos/2
+
+###
+
+### 9. Verificar que la foto 2 fue eliminada (404 Not Found)
+GET http://localhost:3000/api/fotos/2
+
+###
+
+### 10. Intentar eliminar una foto inexistente (404 Not Found)
+DELETE http://localhost:3000/api/fotos/99
+
+###
+
+### 11. Probar la ruta de error interno del servidor (500 Internal Server Error)
+GET http://localhost:3000/api/error
